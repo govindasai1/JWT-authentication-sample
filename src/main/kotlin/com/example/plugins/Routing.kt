@@ -1,8 +1,7 @@
 package com.example.plugins
 
-import com.example.routing.actionRouting
-import com.example.routing.loginRouting
-import com.example.routing.registationnRouting
+import com.example.routing.*
+import com.example.routing.actionSession
 import com.example.utils.TokenManager
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -34,11 +33,10 @@ fun Application.configureRouting() {
     }
 
     routing {
+        loginSession()
+        actionSession()
         actionRouting()
         registationnRouting()
         loginRouting()
-        get("/") {
-            call.respondText("Hello World!")
-        }
     }
 }

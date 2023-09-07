@@ -45,5 +45,5 @@ dependencies {
     implementation("com.zaxxer:HikariCP:$Hikari_version")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
     implementation("io.ktor:ktor-server-request-validation:$ktor_version")
-
+    implementation("io.ktor:ktor-server-sessions:$ktor_version")
 }
