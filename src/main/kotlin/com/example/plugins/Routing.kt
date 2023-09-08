@@ -33,6 +33,7 @@ fun Application.configureRouting() {
     }
 
     routing {
+        gettingAll()
         loginSession()
         actionSession()
         actionRouting()

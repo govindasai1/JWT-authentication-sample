@@ -6,11 +6,14 @@ import com.example.models.UserSession
 import com.fasterxml.jackson.databind.*
 import io.ktor.serialization.jackson.*
 import io.ktor.server.application.*
+import io.ktor.server.plugins.callloging.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.requestvalidation.*
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
+import org.slf4j.event.Level
 
 fun Application.configureSerialization() {
     install(RequestValidation){
@@ -26,6 +29,17 @@ fun Application.configureSerialization() {
     }
     install(Sessions){
         cookie<UserSession>("userSession")
+    }
+    install(CallLogging){
+        level = Level.WARN
+        filter { call ->
+            call.request.path().endsWith("/gettingAccounts")
+        }
+        format { call ->
+            val status = call.response.status()
+            val httpMethod = call.request.httpMethod.value
+            "Status : $status  Method: $httpMethod "
+        }
     }
     install(ContentNegotiation) {
         jackson {

@@ -12,6 +12,7 @@ fun main() {
 }
 
 fun Application.module() {
+    log.info("hello world happy coding")
     DatabaseFactory.init()
     configureSerialization()
     configureRouting()
